@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct OnboardingData: Identifiable {
+public struct OnboardingData: Identifiable {
     var id: String = UUID().uuidString
     
     var image: String
