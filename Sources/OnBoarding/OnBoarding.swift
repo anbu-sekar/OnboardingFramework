@@ -1,9 +1,7 @@
-
-
 import SwiftUI
 
-public struct screens: Identifiable {
-    var id: ObjectIdentifier
+struct OnboardingData: Identifiable {
+    var id: String = UUID().uuidString
     
     var image: String
     var title: String?
@@ -14,15 +12,16 @@ public struct screens: Identifiable {
 
 public struct OnBoarding: View {
     
-    public var totalPages = 1;
+    public var totalPages: Int {
+        datasource.count
+    }
     
     @AppStorage("currentPage") var currentpage = 1
     
-    @Binding var datasource: [screens]
+    var datasource: [OnboardingData]
     
-    private init(screensData: Binding<[screens]>) {
-        self._datasource = screensData
-        self.totalPages = datasource.count
+    private init(screensData: [OnboardingData]) {
+        self.datasource = screensData
     }
     
     
@@ -31,11 +30,10 @@ public struct OnBoarding: View {
         // For slide animation
         
         ZStack {
-            
+            //tab view
             ForEach (self.datasource) { scren in
                 if currentpage == scren.pageID {
                     ScreenView(image: scren.image, title: scren.title, detail: scren.detail, bgColor: scren.bgColor)
-                    
                 }
             }
             
