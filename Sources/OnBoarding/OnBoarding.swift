@@ -2,7 +2,7 @@
 
 import SwiftUI
 
-struct screens: Identifiable {
+public struct screens: Identifiable {
     var id: ObjectIdentifier
     
     var image: String
