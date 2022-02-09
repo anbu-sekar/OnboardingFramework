@@ -175,7 +175,7 @@ public struct OnBoarding: View {
 
 public extension OnBoarding {
     
-    struct onboardingData {
+    public struct onboardingData {
         //public var id: ObjectIdentifier
         
         var image: String
