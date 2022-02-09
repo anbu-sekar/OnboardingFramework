@@ -1,6 +1,6 @@
 import SwiftUI
 
-open struct OnboardingData: Identifiable {
+public struct OnboardingData: Identifiable {
     public var id: String = UUID().uuidString
     
     public var image: String
@@ -10,7 +10,7 @@ open struct OnboardingData: Identifiable {
     public var pageID: Int?
 }
 
-open struct OnBoarding: View {
+public struct OnBoarding: View {
     
     public var totalPages: Int {
         datasource.count
