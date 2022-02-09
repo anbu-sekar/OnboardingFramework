@@ -1,27 +1,18 @@
-import SwiftUI
 
-public struct OnboardingData: Identifiable {
-    public var id: String = UUID().uuidString
-    
-    public var image: String
-    public var title: String?
-    public var detail: String?
-    public var bgColor: Color?
-    public var pageID: Int?
-}
+
+import SwiftUI
 
 public struct OnBoarding: View {
     
-    public var totalPages: Int {
-        datasource.count
-    }
+    public var totalPages = 1
     
     @AppStorage("currentPage") var currentpage = 1
     
-    public var datasource: [OnboardingData]
+    @Binding var datasource: [onboardingData]
     
-    private init(screensData: [OnboardingData]) {
-        self.datasource = screensData
+    private init(screensData: Binding<[onboardingData]>) {
+        self._datasource = screensData
+        self.totalPages = datasource.count
     }
     
     
@@ -30,10 +21,11 @@ public struct OnBoarding: View {
         // For slide animation
         
         ZStack {
-            //tab view
-            ForEach (self.datasource) { scren in
+            
+            ForEach (datasource, id: \.pageID) { scren in
                 if currentpage == scren.pageID {
                     ScreenView(image: scren.image, title: scren.title, detail: scren.detail, bgColor: scren.bgColor)
+                    
                 }
             }
             
@@ -179,4 +171,26 @@ public struct OnBoarding: View {
             .background(bgColor.cornerRadius(10).ignoresSafeArea())
         }
     }
+}
+
+public extension OnBoarding {
+    
+    struct onboardingData {
+        //public var id: ObjectIdentifier
+        
+        var image: String
+        var title: String?
+        var detail: String?
+        var bgColor: Color?
+        var pageID: Int?
+        
+        public init(mainImage: String, mainTitle: String = "", mainDetails: String = "", mainBgcolor: Color = .gray, currentPageID: Int = 1) {
+            self.image = mainImage
+            self.title = mainTitle
+            self.detail = mainDetails
+            self.bgColor = mainBgcolor
+            self.pageID = currentPageID
+        }
+    }
+    
 }
