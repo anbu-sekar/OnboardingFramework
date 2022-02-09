@@ -1,16 +1,16 @@
 import SwiftUI
 
-public struct OnboardingData: Identifiable {
-    var id: String = UUID().uuidString
+open public struct OnboardingData: Identifiable {
+    public var id: String = UUID().uuidString
     
-    var image: String
-    var title: String?
-    var detail: String?
-    var bgColor: Color?
-    var pageID: Int?
+    public var image: String
+    public var title: String?
+    public var detail: String?
+    public var bgColor: Color?
+    public var pageID: Int?
 }
 
-public struct OnBoarding: View {
+open public struct OnBoarding: View {
     
     public var totalPages: Int {
         datasource.count
@@ -18,7 +18,7 @@ public struct OnBoarding: View {
     
     @AppStorage("currentPage") var currentpage = 1
     
-    var datasource: [OnboardingData]
+    public var datasource: [OnboardingData]
     
     private init(screensData: [OnboardingData]) {
         self.datasource = screensData
