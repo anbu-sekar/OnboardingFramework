@@ -178,11 +178,11 @@ public extension OnBoarding {
     public struct onboardingData {
         //public var id: ObjectIdentifier
         
-        var image: String
-        var title: String?
-        var detail: String?
-        var bgColor: Color?
-        var pageID: Int?
+        public var image: String
+        public var title: String?
+        public var detail: String?
+        public var bgColor: Color?
+        public var pageID: Int?
         
         public init(mainImage: String, mainTitle: String = "", mainDetails: String = "", mainBgcolor: Color = .gray, currentPageID: Int = 1) {
             self.image = mainImage
